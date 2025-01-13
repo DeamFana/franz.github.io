@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/franz.github.io/",
+  base: "franz.github.io/docs",
   build: {
     outDir: "../docs"
   },
