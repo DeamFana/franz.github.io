@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import App from "../App.vue"
+import background from "@/components/Background.vue";
 </script>
 
 <template>
   <main>
-    你好FFFFFF
+    <background>
+      你好FFFFFF
+    </background>
   </main>
 </template>
