@@ -16,6 +16,11 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
+  server: {
+    //使用IP能访问
+    host: '0.0.0.0'
+  },
+  
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

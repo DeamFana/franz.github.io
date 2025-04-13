@@ -35,7 +35,7 @@
   background-image: 
     radial-gradient(closest-side at 50% 50%, rgb(181, 249, 142), rgba(235, 105, 78, 0)),
     radial-gradient(closest-side at 50% 50%, rgb(168, 251, 252), rgba(243, 11, 164, 0)),
-    radial-gradient(closest-side at 50% 50%, rgb(224, 198, 66), rgba(254, 234, 131, 0)),
+    radial-gradient(closest-side at 50% 50%, rgb(248, 238, 122), rgba(254, 234, 131, 0)),
     radial-gradient(closest-side at 50% 50%, rgb(220, 255, 233), rgba(170, 142, 245, 0)),
     radial-gradient(closest-side at 50% 50%, rgb(156, 248, 147), rgba(248, 192, 147, 0)),
     radial-gradient(closest-side at 50% 50%, rgb(181, 227, 138), rgba(138, 211, 227, 0)),
