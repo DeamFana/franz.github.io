@@ -111,13 +111,16 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="assets\banner1.jpg" class="d-block w-100" alt="Nature Scene 1">
+            <img src="assets/banner1.jpg" class="d-block w-100" alt="Nature Scene 1">
+            <div class="overlay">
+                <img src="assets/avatar.jpg" class="avatar" alt="Avatar" onclick="scrollToResume()">
+            </div>
         </div>
         <div class="carousel-item">
-            <img src="assets\banner1.jpg" class="d-block w-100" alt="Nature Scene 2">
+            <img src="assets/banner1.jpg" class="d-block w-100" alt="Nature Scene 2">
         </div>
         <div class="carousel-item">
-            <img src="assets\banner1.jpg" class="d-block w-100" alt="Nature Scene 3">
+            <img src="assets/banner1.jpg" class="d-block w-100" alt="Nature Scene 3">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -128,9 +131,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-    <div class="overlay">
-        <img src="https://img.alicdn.com/imgextra/i1/O1CN01HtLwPj1UoWkKgT0rE_!!6000000001722-0-avatar.jpg" class="avatar" onclick="scrollToResume()">
-    </div>
 </div>
 
 <div class="container resume-container mt-5 pt-5" id="resume-section">
@@ -178,9 +178,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
 <script>
     function scrollToResume() {
-        $('html, body').animate({
-            scrollTop: $('#resume-section').offset().top
-        }, 1000);
+        document.querySelector('html, body').animate({
+            scrollTop: document.getElementById('resume-section').offsetTop
+        }, { duration: 1000 });
     }
 </script>
 </body>
