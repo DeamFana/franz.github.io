@@ -43,11 +43,13 @@ const showLogin = ref(false)
   height: 100%;
   min-height: 300px;
   margin: auto;
+  -webkit-mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 #Login .loginArea.Debug{
   border: 1px solid red;
   background-color: rgba(0, 0, 255, 0.3);
+  background-color: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 #Login .avatar{
@@ -100,24 +102,21 @@ const showLogin = ref(false)
 
 .loginArea-enter-active {
   transition: all 1s ease;
-  mask: linear-gradient(-45deg, black 0%, transparent 100%);
-  -webkit-mask: linear-gradient(-45deg, black 0%, transparent 100%);
-  animation: diagonalReveal 1s ease forwards;
+  transform-origin: center;
+  animation: loginArea;
 }
-
 .loginArea-enter-from {
   opacity: 0;
-  transform: translateY(20px);
+  transform: scale(0.5);
 }
 
-@keyframes diagonalReveal {
+@keyframes loginArea {
   0% {
-    mask-position: 100% 100%;
-    -webkit-mask-position: 100% 100%;
+    opacity: 0;
+    transform: scale(0.5);
   }
-  100% {
-    mask-position: 0% 0%;
-    -webkit-mask-position: 0% 0%;
+  50% {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
   }
 }
 </style>
