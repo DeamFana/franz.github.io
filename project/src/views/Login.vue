@@ -6,7 +6,7 @@ import { ref, Transition } from 'vue'
 
 let isDebuging = ref(false)
 const showWelcome = ref(true)
-const showLogin = ref(false)
+const showLogin = ref(true)
 
 </script>
 
@@ -14,15 +14,15 @@ const showLogin = ref(false)
   <main id="Login">
     <el-button style="position: absolute;right: 10px;top: 10px;z-index: 999;" @click="isDebuging = !isDebuging">点击调试</el-button>
     <background>
-      <transition 
+      <!-- <transition 
         name="welcome"
         @after-appear="showWelcome = false"
         @after-leave="showLogin = true"
         appear
       >
         <p v-if="showWelcome" class="welcome">欢迎</p>
-      </transition>
-      <transition name="loginArea">
+      </transition> -->
+      <transition name="loginArea" appear>
         <!-- 或者 <div :class="['loginArea', isDebuging ? 'Debug' : '']"> -->
           <!-- 在Vue中 {{ }} 只能表示插值 -->
         <div v-show="showLogin" class="loginArea" :class="{ 'Debug': isDebuging }">
@@ -43,7 +43,8 @@ const showLogin = ref(false)
   height: 100%;
   min-height: 300px;
   margin: auto;
-  -webkit-mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  /* mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  mask-position: 1000%; */
 }
 
 #Login .loginArea.Debug{
@@ -101,22 +102,27 @@ const showLogin = ref(false)
 }
 
 .loginArea-enter-active {
-  transition: all 1s ease;
-  transform-origin: center;
-  animation: loginArea;
+  /* transition: all 1s ease;
+  transform-origin: center; */
+  animation: loginArea 2s;
 }
-.loginArea-enter-from {
+/* .loginArea-enter-from {
   opacity: 0;
   transform: scale(0.5);
-}
+} */
 
 @keyframes loginArea {
   0% {
-    opacity: 0;
-    transform: scale(0.5);
+    mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    mask-position: 0;
   }
   50% {
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    mask-position: 500px;
+  }
+  100% {
+    mask-image: -webkit-linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    mask-position: 1000px;
   }
 }
 </style>
