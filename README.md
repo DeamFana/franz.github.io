@@ -6,6 +6,11 @@
     - [ ] 元素进入10%触发事件
     - [ ] 仅触发一次事件
 
+## 需要安装的扩展
+- [ ] EditorConfig for VS code
+- [ ] HTML format
+- [ ] Prettier
+
 ## TS
 - [ ] 声明变量需要见指定类型（避免Never）
 - [ ] 声明对象类型时需新见声明接口（`interface`）
