@@ -8,7 +8,7 @@ const path = require('path');
 
 const projectDir = path.join(__dirname, '..');
 const srcDir = path.join(projectDir, 'src');
-const outDir = path.join(projectDir, '../doc');
+const outDir = path.join(projectDir, '../docs');
 const dataFile = path.join(srcDir, 'data', 'resume.json');
 
 const resumeData = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
