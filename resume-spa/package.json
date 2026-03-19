@@ -1,0 +1,32 @@
+{
+  "name": "resume-spa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/fix-paths.js",
+    "build:static": "node scripts/generate-static.js",
+    "build:next": "next build && node scripts/fix-paths.js",
+    "build:remove-api": "node -e \"const fs=require('fs');if(fs.existsSync('src/app/api'))fs.renameSync('src/app/api','src/app/api.bak')\"",
+    "build:restore-api": "node -e \"const fs=require('fs');if(fs.existsSync('src/app/api.bak'))fs.renameSync('src/app/api.bak','src/app/api')\"",
+    "clean": "node -e \"fs.rmSync('out',{recursive:true,force:true});fs.rmSync('dist',{recursive:true,force:true})\"",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "animejs": "^4.3.6",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
