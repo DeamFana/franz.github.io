@@ -5,6 +5,41 @@ import { EditableField } from '@/components/EditableField';
 import { useState, useEffect } from 'react';
 import { ResumeData } from '@/data/resume';
 
+// ===== 头像上传组件 =====
+const AvatarUpload = ({ value, onChange }: { value?: string; onChange: (v: string) => void }) => {
+  const [preview, setPreview] = useState(value || '');
+  
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { alert('请选择图片文件'); return; }
+    if (file.size > 2 * 1024 * 1024) { alert('图片不能超过2MB'); return; }
+    const reader = new FileReader();
+    reader.onload = () => { setPreview(reader.result as string); onChange(reader.result as string); };
+    reader.readAsDataURL(file);
+  };
+  
+  const handleRemove = () => { setPreview(''); onChange(''); };
+  
+  return (
+    <div className="mb-6">
+      <h3 className="text-lg font-medium mb-3">头像</h3>
+      <div className="flex items-center gap-4">
+        <div className="w-20 h-20 rounded-full bg-[var(--border)] flex items-center justify-center overflow-hidden">
+          {preview ? <img src={preview} alt="头像" className="w-full h-full object-cover" /> : <span className="text-2xl">📷</span>}
+        </div>
+        <div className="flex gap-2">
+          <label className="px-4 py-2 bg-[var(--primary)] text-white rounded-md cursor-pointer hover:opacity-90">
+            上传图片
+            <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
+          </label>
+          {preview && <button onClick={handleRemove} className="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50">删除</button>}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // 预览组件 - 显示真实简历样式
 function PreviewMode() {
   const { data, setPreview } = useEdit();
@@ -448,57 +483,18 @@ function EditContent() {
         <section className="card">
           <h2 className="text-xl font-semibold mb-6 pb-2 border-b border-[var(--border)]">关于我</h2>
           
+          {/* 头像上传 */}
+          <AvatarUpload
+            value={data.basics.avatar}
+            onChange={(v) => updateBasics('avatar', v)}
+          />
           
-// ===== 头像上传 =====
-function AvatarUpload({ value, onChange }: { value?: string; onChange: (v: string) => void }) {
-  const [preview, setPreview] = useState(value || '');
-  
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (!file.type.startsWith('image/')) { alert('请选择图片文件'); return; }
-    if (file.size > 2 * 1024 * 1024) { alert('图片不能超过2MB'); return; }
-    const reader = new FileReader();
-    reader.onload = () => { setPreview(reader.result as string); onChange(reader.result as string); };
-    reader.readAsDataURL(file);
-  };
-  
-  const handleRemove = () => { setPreview(''); onChange(''); };
-  
-  return (
-    <div className="mb-6">
-      <h3 className="text-lg font-medium mb-3">头像</h3>
-      <div className="flex items-center gap-4">
-        <div className="w-20 h-20 rounded-full bg-[var(--border)] flex items-center justify-center overflow-hidden">
-          {preview ? <img src={preview} alt="头像" className="w-full h-full object-cover" /> : <span className="text-2xl">📷</span>}
-        </div>
-        <div className="flex gap-2">
-          <label className="px-4 py-2 bg-[var(--primary)] text-white rounded-md cursor-pointer hover:opacity-90">
-            上传图片
-            <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
-          </label>
-          {preview && <button onClick={handleRemove} className="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50">删除</button>}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 {/* 简介 */}
           <div className="mb-6">
             <h3 className="text-lg font-medium mb-3">简介</h3>
             <EditableField
               label="个人简介"
-              value={data.basics.avatar}
-              onChange={(v) => updateBasics('avatar', v)}
-            />
-          </div>
-          
-          {/* 简介 */}
-          <div className="mb-6">
-            <h3 className="text-lg font-medium mb-3">简介</h3>
-            <EditableField
-              label="个人简介"
+              value={data.basics.summary}
               onChange={(v) => updateBasics('summary', v)}
               multiline
             />

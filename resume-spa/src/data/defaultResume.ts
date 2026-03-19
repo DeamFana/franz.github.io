@@ -21,6 +21,7 @@ export interface Basics {
   phone: string;
   url: string;
   summary: string;
+  avatar?: string;
   location: Location;
   profiles: Profile[];
 }
